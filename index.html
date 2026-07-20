@@ -3,38 +3,179 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T&G on Tour</title>
-<meta name="description" content="T&G on Tour — Reisen, Wohnwagen-Ideen, T&G Produkte. Bald mehr.">
-<meta name="theme-color" content="#F7F6F2">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<title>T&amp;G on Tour</title>
+<meta name="description" content="T&amp;G on Tour: Reisen, Wohnwagen-Ideen und T&amp;G Produkte. Eine Seite über das Leben unterwegs. Bald mehr.">
+<meta name="theme-color" content="#f7f6f2">
+<link rel="canonical" href="https://tafri.me/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="T&amp;G on Tour">
+<meta property="og:description" content="Reisen, Wohnwagen-Ideen und T&amp;G Produkte. Eine Seite über das Leben unterwegs.">
+<meta property="og:url" content="https://tafri.me/">
+<meta property="og:image" content="https://tafri.me/assets/logo.webp">
+<link rel="icon" href="assets/logo.webp" type="image/webp">
 <style>
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #F7F6F2; font-family: 'Montserrat', system-ui, sans-serif; }
-  a { text-decoration: none; color: #24345C; }
-  a:hover { color: #9DBB72; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-  .wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; }
-  .inner { display: flex; flex-direction: column; align-items: center; animation: fadeUp 0.7s ease both; }
-  .logo { width: 340px; max-width: 82vw; display: block; mix-blend-mode: multiply; margin-bottom: -44px; }
-  .claim { font-weight: 300; font-size: 15px; letter-spacing: 0.22em; text-indent: 0.22em; color: #3a3f36; text-align: center; }
-  .tags { display: flex; align-items: center; gap: 16px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
-  .tags span { font-weight: 300; font-size: 12px; letter-spacing: 0.1em; color: #6b7280; }
-  .tags i { width: 4px; height: 4px; border-radius: 50%; background: #9DBB72; }
-  .foot { font-weight: 300; font-size: 11px; letter-spacing: 0.14em; color: #9aa0a6; margin-top: 56px; text-align: center; }
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;
+ src:url('assets/fonts/instrument-serif-latin.woff2') format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;
+ src:url('assets/fonts/instrument-serif-latinext.woff2') format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1E9F,U+2020,U+20A0-20AB,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;
+ src:url('assets/fonts/instrument-serif-italic-latin.woff2') format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;
+ src:url('assets/fonts/instrument-serif-italic-latinext.woff2') format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1E9F,U+2020,U+20A0-20AB,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;
+ src:url('assets/fonts/space-grotesk-latin.woff2') format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212,U+FEFF,U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;
+ src:url('assets/fonts/space-grotesk-latinext.woff2') format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1E9F,U+2020,U+20A0-20AB,U+2C60-2C7F,U+A720-A7FF}
+
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#f7f6f2}
+body{font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#8a6a3a;text-decoration:none}
+a:hover{color:#b0703a;text-decoration:underline}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes dashMove{from{background-position:48px 0}to{background-position:0 0}}
+@keyframes drive{
+ 0%{left:103%;transform:translateY(0)}
+ 25%{transform:translateY(-1.5px)}
+ 50%{transform:translateY(0)}
+ 75%{transform:translateY(-1.5px)}
+ 100%{left:-8%;transform:translateY(0)}}
+
+.page{min-height:100vh;display:flex;flex-direction:column;background:#f7f6f2;overflow:hidden;position:relative}
+
+.head{display:flex;justify-content:space-between;align-items:flex-start;
+ padding:30px 48px;animation:fadeUp .7s .1s ease both;position:relative;z-index:2}
+.head img{height:112px;width:auto;margin-top:26px}
+
+.langs{display:flex;gap:6px;font-size:11px;letter-spacing:.1em}
+.langs button{padding:6px 12px;border-radius:99px;cursor:pointer;
+ font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.1em;
+ background:transparent;color:rgba(43,40,35,.5);border:1px solid rgba(43,40,35,.25)}
+.langs button[aria-pressed="true"]{background:#2b2823;color:#f7f6f2;border-color:#2b2823}
+
+.scene{position:absolute;top:0;right:0;height:calc(100% - 96px);width:64%;
+ object-fit:cover;object-position:right bottom;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 45%),linear-gradient(180deg,#000 92%,transparent 100%);
+ mask-image:linear-gradient(90deg,transparent 0,#000 45%),linear-gradient(180deg,#000 92%,transparent 100%);
+ -webkit-mask-composite:source-in;mask-composite:intersect;
+ animation:fadeUp 1.4s .4s ease both;pointer-events:none}
+
+.hero{flex:1;display:flex;flex-direction:column;justify-content:center;
+ padding:0 48px 96px;gap:26px;max-width:720px;position:relative;z-index:2}
+.hero h1{margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+ font-size:clamp(68px,9.5vw,124px);line-height:1;letter-spacing:-.01em;color:#221f1a;
+ text-shadow:0 1px 0 rgba(43,40,35,.25);animation:fadeUp .8s .25s ease both}
+.hero h1 em{color:#b0703a;font-style:italic}
+.hero p{margin:0;font-size:17px;line-height:1.6;color:rgba(43,40,35,.72);
+ max-width:460px;animation:fadeUp .8s .45s ease both}
+
+.road{position:relative;margin:0 48px;z-index:2}
+.road .lane{height:3px;background-image:linear-gradient(90deg,#a05f28 0 26px,transparent 26px 48px);
+ background-size:48px 3px;animation:dashMove 2.6s linear infinite}
+.convoy{position:absolute;bottom:1px;left:0;display:flex;align-items:flex-end;animation:drive 32s linear infinite}
+.convoy svg{height:44px;width:auto;display:block;margin-right:-12px;margin-bottom:6px}
+.convoy img{height:68px;width:auto;display:block;margin-left:2px}
+
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+ padding:26px 48px;font-size:12px;letter-spacing:.14em;color:rgba(43,40,35,.6);
+ animation:fadeUp .8s .65s ease both;position:relative;z-index:2}
+.topics{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.topics i{width:5px;height:5px;border-radius:50%;background:#7d8c4f;display:inline-block}
+
+@media (max-width:700px){
+ .head{padding:20px 24px}
+ .head img{height:72px;margin-top:0}
+ .scene{top:0;right:0;width:100%;height:46%;object-position:right center;
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
+  -webkit-mask-composite:source-over;mask-composite:add}
+ .hero{justify-content:flex-end;padding:46vh 24px 64px;gap:18px;max-width:none}
+ .road{margin:0 24px}
+ .convoy svg{height:32px;margin-right:-9px;margin-bottom:4px}
+ .convoy img{height:49px}
+ .foot{padding:20px 24px}
+}
+
+@media (prefers-reduced-motion:reduce){
+ .convoy,.road .lane,.scene,.hero h1,.hero p,.head,.foot{animation:none !important}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="inner">
-    <img class="logo" src="assets/tg-on-tour.png" alt="T&G on Tour">
-    <div class="claim">UNTERWEGS. BALD MEHR.</div>
-    <div class="tags">
-      <span>REISEN</span><i></i><span>WOHNWAGEN-IDEEN</span><i></i><span>T&amp;G PRODUKTE</span>
+<div class="page">
+
+  <header class="head">
+    <img src="assets/logo.webp" alt="T&amp;G on Tour" width="400" height="320">
+    <div class="langs">
+      <button type="button" id="btn-de" aria-pressed="true">DE</button>
+      <button type="button" id="btn-pl" aria-pressed="false">PL</button>
     </div>
-    <div class="foot">tafri.me · ein Projekt von <a href="https://t-frydrych.de">t-frydrych.de</a></div>
+  </header>
+
+  <img class="scene" src="assets/scene-road.webp" alt="" width="1400" height="819">
+
+  <main class="hero">
+    <h1><span id="h1">Unterwegs.</span><br><em id="h2">Bald mehr.</em></h1>
+    <p><span id="d1">Reisen, Wohnwagen-Ideen und T&amp;G Produkte</span><br><span id="d2">eine Seite über das Leben unterwegs.</span></p>
+  </main>
+
+  <div class="road">
+    <div class="convoy">
+      <svg viewBox="0 0 196 84" fill="none" stroke="#2b2823" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M16 64 L10 56 Q8 44 18 42 L36 40 L52 18 Q55 14 62 14 L120 14 Q130 14 136 22 L148 40 L164 44 Q174 46 174 54 L174 58 Q174 64 168 64"></path>
+        <path d="M60 20 L48 38 L88 38 L88 20 Z" stroke-width="4"></path>
+        <path d="M98 20 L98 38 L142 38 L130 22 Q127 20 120 20 Z" stroke-width="4"></path>
+        <line x1="50" y1="64" x2="136" y2="64"></line>
+        <circle cx="33" cy="64" r="14"></circle><circle cx="33" cy="64" r="4.5" stroke-width="4"></circle>
+        <circle cx="151" cy="64" r="14"></circle><circle cx="151" cy="64" r="4.5" stroke-width="4"></circle>
+      </svg>
+      <img src="assets/van.webp" alt="" width="139" height="81">
+    </div>
+    <div class="lane"></div>
   </div>
+
+  <footer class="foot">
+    <div class="topics">
+      <span id="t1">REISEN</span><i></i>
+      <span id="t2">WOHNWAGEN-IDEEN</span><i></i>
+      <span id="t3">T&amp;G PRODUKTE</span>
+    </div>
+    <div>tafri.me · <span id="cr">ein Projekt von</span> <a href="https://t-frydrych.de">t-frydrych.de</a></div>
+  </footer>
+
 </div>
+
+<script>
+(function(){
+  var T = {
+    de: { h1:'Unterwegs.', h2:'Bald mehr.',
+          d1:'Reisen, Wohnwagen-Ideen und T&G Produkte',
+          d2:'eine Seite über das Leben unterwegs.',
+          t1:'REISEN', t2:'WOHNWAGEN-IDEEN', t3:'T&G PRODUKTE',
+          cr:'ein Projekt von' },
+    pl: { h1:'W drodze.', h2:'Wkrótce więcej.',
+          d1:'Podróże, pomysły na przyczepę i produkty T&G',
+          d2:'strona o życiu w drodze.',
+          t1:'PODRÓŻE', t2:'POMYSŁY NA PRZYCZEPĘ', t3:'PRODUKTY T&G',
+          cr:'projekt' }
+  };
+  function set(lang){
+    var t = T[lang]; if(!t) return;
+    for(var k in t){ var el = document.getElementById(k); if(el) el.textContent = t[k]; }
+    document.documentElement.lang = lang;
+    document.getElementById('btn-de').setAttribute('aria-pressed', lang === 'de');
+    document.getElementById('btn-pl').setAttribute('aria-pressed', lang === 'pl');
+  }
+  document.getElementById('btn-de').addEventListener('click', function(){ set('de'); });
+  document.getElementById('btn-pl').addEventListener('click', function(){ set('pl'); });
+})();
+</script>
 </body>
 </html>
